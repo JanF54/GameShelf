@@ -1,0 +1,3 @@
+import { Injectable } from '@angular/core';import { HttpClient } from '@angular/common/http';import { Dashboard,Jogo,JogoPayload } from './models';
+const API='http://localhost:8080/api';
+@Injectable({providedIn:'root'}) export class JogoService {constructor(private http:HttpClient){}listar(){return this.http.get<Jogo[]>(`${API}/jogos`)}obter(id:number){return this.http.get<Jogo>(`${API}/jogos/${id}`)}criar(p:JogoPayload){return this.http.post<Jogo>(`${API}/jogos`,p)}atualizar(id:number,p:JogoPayload){return this.http.put<Jogo>(`${API}/jogos/${id}`,p)}excluir(id:number){return this.http.delete<void>(`${API}/jogos/${id}`)}dashboard(){return this.http.get<Dashboard>(`${API}/dashboard`)}}
